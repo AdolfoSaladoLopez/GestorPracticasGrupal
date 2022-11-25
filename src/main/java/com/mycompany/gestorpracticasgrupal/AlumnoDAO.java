@@ -1,5 +1,6 @@
 package com.mycompany.gestorpracticasgrupal;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.Alumno;
 
@@ -15,7 +16,7 @@ public interface AlumnoDAO {
 
     Alumno obtenerAlumnoId(Integer id);
     
-    List<Integer> calcularHorasFct(Alumno alumno);
+    ArrayList<Integer> calcularHorasFct(Alumno alumno);
 
     List<Integer> calcularHorasDual(Alumno alumno);
 }

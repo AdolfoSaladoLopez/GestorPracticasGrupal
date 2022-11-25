@@ -57,13 +57,13 @@ public class AlumnoDAOHib implements AlumnoDAO {
     }
 
     @Override
-    public List<Integer> calcularHorasFct(Alumno alumno) {
+    public ArrayList<Integer> calcularHorasFct(Alumno alumno) {
         Integer id = alumno.getId();
         try (var s = HibernateUtil.getSessionFactory().openSession()) {
             var q = s.createQuery("Select sum(ac.horas) FROM Alumno a, Actividad ac WHERE a.id = ac.alumno.id AND a.id = :id and ac.tipo = 'FCT'");
             q.setInteger("id", id);
 
-            return q.list();
+            return (ArrayList<Integer>) q.list();
         }
     }
 

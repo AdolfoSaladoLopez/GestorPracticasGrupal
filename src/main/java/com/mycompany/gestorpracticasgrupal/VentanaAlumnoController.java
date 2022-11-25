@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Actividad;
+import models.Alumno;
 
 /**
  * FXML Controller class
@@ -61,32 +63,47 @@ public class VentanaAlumnoController implements Initializable {
     @FXML
     private Label lblDnIAlumno;
     @FXML
-    private Label lblCorreoAlumno11;
-    @FXML
     private Label lblNacimientoAlumno;
     @FXML
     private Label lblCorreoAlumno;
-    @FXML
-    private Label lblCorreoProfesor1;
-    @FXML
-    private Label lblCorreoAlumno1;
     @FXML
     private Label lblNumeroAlumno;
     @FXML
     private Label lblNombreProfesor;
     @FXML
     private Label lblCorreoProfesor;
+    @FXML
+    private Label lblEmpresaDual;
+    @FXML
+    private Label lblCorreoDual;
+    @FXML
+    private Label lblResponsableDual;
+    @FXML
+    private Label lblHorasTotalesDual;
+    @FXML
+    private Label lblHorasTotalesFct;
+    @FXML
+    private Label lblHorasRealizadasDual;
+    @FXML
+    private Label lblHorasRealizadasFct;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tcFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+        Alumno alumno = SessionData.getAlumno();
+        Integer horasTotalDual = alumno.getTotalDual();
+        Integer horasTotalFct = alumno.getTotalFCT();
+
+
+        //tcFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
         tcTipo.setCellValueFactory(new PropertyValueFactory("tipo"));
         tcHoras.setCellValueFactory(new PropertyValueFactory("horas"));
         tcActividad.setCellValueFactory(new PropertyValueFactory("actividad"));
         tcObservaciones.setCellValueFactory(new PropertyValueFactory("observaciones"));
+
+        tcFecha.setCellValueFactory( (var fila)->{
+            Actividad a = fila.getValue();
+            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
+        });
 
         /* ETIQUETAS ALUMNO */
         lblBienvenida.setText("Bienvenid@, " + SessionData.getAlumno().getNombre() + " " + SessionData.getAlumno().getApellidos());
@@ -99,17 +116,38 @@ public class VentanaAlumnoController implements Initializable {
         lblNombreProfesor.setText(SessionData.getAlumno().getProfesor().getNombre() + " " + SessionData.getAlumno().getProfesor().getApellidos());
         lblCorreoProfesor.setText(SessionData.getAlumno().getProfesor().getCorreo());
 
+        /* ETIQUETAS EMPRESA DUAL */
+        lblEmpresaDual.setText(SessionData.getAlumno().getEmpresa().getNombre());
+        lblCorreoDual.setText(SessionData.getAlumno().getEmpresa().getCorreo());
+        lblResponsableDual.setText(SessionData.getAlumno().getEmpresa().getResponsable());
+        if (horasTotalDual != 0) {
+            lblHorasTotalesDual.setText(SessionData.getAlumno().getTotalDual().toString());
+            lblHorasRealizadasDual.setText(String.valueOf(gestorAlumno.calcularHorasDual(alumno).get(0)));
+        } else {
+            lblHorasTotalesDual.setText("Sin asignar");
+            lblHorasRealizadasDual.setText("Sin asignar");
+        }
+        lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
+        lblHorasRealizadasFct.setText(String.valueOf(gestorAlumno.calcularHorasFct(alumno).get(0)));
+
         actualizarTabla();
 
     }
 
     private void actualizarTabla() {
         List<Actividad> listadoActividades = new ArrayList<>();
-        listadoActividades = gestorAlumno.obtenerAlumnoId(1).getActividades();
-        System.out.println(listadoActividades);
+        listadoActividades = gestorAlumno.obtenerAlumnoId(SessionData.getAlumno().getId()).getActividades();
+
+        List<Actividad> listadoActividadesFct = new ArrayList<>();
+
+        for (Actividad actividad : listadoActividades) {
+            if (actividad.getTipo().equals("FCT")) {
+                listadoActividadesFct.add(actividad);
+            }
+        }
 
         ObservableList<Actividad> datos = FXCollections.observableArrayList();
-        datos.addAll(listadoActividades);
+        datos.addAll(listadoActividadesFct);
 
         tFct.getItems().clear();
         tFct.getItems().addAll(datos);
