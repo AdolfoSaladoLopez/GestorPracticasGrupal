@@ -11,6 +11,7 @@ public class SessionData {
     private static Profesor profesor;
     private static Empresa empresa;
     private static Actividad actividad;
+    private static String plataforma;
 
     public static Alumno getAlumno() {
         return alumno;
@@ -42,5 +43,13 @@ public class SessionData {
 
     public static void setActividad(Actividad actividad) {
         SessionData.actividad = actividad;
+    }
+
+    public static String getPlataforma() {
+        return plataforma;
+    }
+
+    public static void setPlataforma(String plataforma) {
+        SessionData.plataforma = plataforma;
     }
 }
