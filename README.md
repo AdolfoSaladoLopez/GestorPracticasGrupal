@@ -4,7 +4,4 @@ Asignatura: Acceso a Datos.
 Centro: Cesur Málaga Este
 Curso: 2022 / 2023.
 Realizado por:
-- Dommarco Berrocal, José Luis.
-- García Belver, Antonio.
-- Lynch Mcrae, Loren. 
-- Salado López, Adolfo. 
+- Adolfo Salado López.
