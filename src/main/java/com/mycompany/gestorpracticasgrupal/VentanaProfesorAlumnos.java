@@ -211,6 +211,12 @@ public class VentanaProfesorAlumnos implements Initializable {
 
     @FXML
     private void btnListadoActividades(ActionEvent event) {
+        try {
+            SessionData.setAlumno(tableAlumnos.getSelectionModel().getSelectedItem());
+            App.setRoot("ventana-actividades-profesor");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
