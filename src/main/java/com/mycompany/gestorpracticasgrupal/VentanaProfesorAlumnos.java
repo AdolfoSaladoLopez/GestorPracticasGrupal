@@ -61,24 +61,24 @@ public class VentanaProfesorAlumnos implements Initializable {
         tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcApellidos.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         actualizarTabla();
-
-
     }
 
     private void actualizarTabla() {
-
         var listadoAlumnos = new ArrayList<>(profesorSesion.getAlumnos());
         ObservableList<Alumno> listaAlumnos = FXCollections.observableArrayList();
         listaAlumnos.addAll(listadoAlumnos);
 
         tableAlumnos.getItems().clear();
         tableAlumnos.getItems().addAll(listaAlumnos);
-
-
     }
 
     @FXML
     private void btnGestionarEmpresas(ActionEvent event) {
+        try {
+            App.setRoot("ventana-empresas");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -101,7 +101,6 @@ public class VentanaProfesorAlumnos implements Initializable {
 
     @FXML
     private void alumnoSeleccionado(MouseEvent event) {
-
         if (tableAlumnos.getSelectionModel().getSelectedItem() != null) {
             Alumno alumnoSeleccionado = tableAlumnos.getSelectionModel().getSelectedItem();
             Empresa empresaAlumno = alumnoSeleccionado.getEmpresa();
@@ -142,16 +141,29 @@ public class VentanaProfesorAlumnos implements Initializable {
                 lblHorasRealizadasFct.setText("Sin asignar");
             }
         }
-
-
     }
 
     @FXML
     private void btnAddAlumno(ActionEvent event) {
+        try {
+            App.setRoot("crear-alumno");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void btnModificarAlumno(ActionEvent event) {
+        if (tableAlumnos.getSelectionModel().getSelectedItem() != null) {
+            System.out.println(tableAlumnos.getSelectionModel().getSelectedItem());
+            try {
+                SessionData.setAlumno(tableAlumnos.getSelectionModel().getSelectedItem());
+                SessionData.setProfesor(profesorSesion);
+                App.setRoot("modificar-alumno");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void establecerEtiquetasSinAsignacion() {
@@ -185,8 +197,14 @@ public class VentanaProfesorAlumnos implements Initializable {
             // Si hemos pulsado en aceptar
             if (action.get() == ButtonType.OK) {
                 gestorAlumnos.eliminarAlumno(tableAlumnos.getSelectionModel().getSelectedItem());
-                tableAlumnos.getItems().clear();
                 establecerEtiquetasSinAsignacion();
+
+                if (profesorSesion.getAlumnos().size() > 0) {
+                    profesorSesion.getAlumnos().remove(tableAlumnos.getSelectionModel().getSelectedItem());
+                    actualizarTabla();
+                } else {
+                    tableAlumnos.getItems().clear();
+                }
             }
         }
     }
