@@ -18,16 +18,16 @@
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
                 <Label text="ACTIVIDADES DUAL" />
-                <TableView maxHeight="300.0" maxWidth="1050.0" minHeight="300.0" minWidth="1050.0" prefHeight="300.0" prefWidth="1050.0">
+                <TableView fx:id="tDual" maxHeight="300.0" maxWidth="1050.0" minHeight="300.0" minWidth="1050.0" prefHeight="300.0" prefWidth="1050.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                <columns>
-                  <TableColumn fx:id="tcFecha1" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="FECHA" />
-                  <TableColumn fx:id="tcTipo1" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="TIPO" />
-                  <TableColumn fx:id="tcHoras1" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="HORAS" />
-                  <TableColumn fx:id="tcActividad1" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" resizable="false" text="ACTIVIDAD" />
-                  <TableColumn fx:id="tcObservaciones1" maxWidth="600.0" minWidth="600.0" prefWidth="600.0" resizable="false" text="OBSERVACIONES" />
+                  <TableColumn fx:id="tcFechaDual" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="FECHA" />
+                  <TableColumn fx:id="tcTipoDual" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="TIPO" />
+                  <TableColumn fx:id="tcHorasDual" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" resizable="false" text="HORAS" />
+                  <TableColumn fx:id="tcActividadDual" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" resizable="false" text="ACTIVIDAD" />
+                  <TableColumn fx:id="tcObservacionesDual" maxWidth="600.0" minWidth="600.0" prefWidth="600.0" resizable="false" text="OBSERVACIONES" />
                </columns>
                 </TableView>
                 <Label alignment="CENTER" contentDisplay="CENTER" text="ACTIVIDADES FCT">
@@ -49,9 +49,9 @@
                 </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="CREAR ACTIVIDAD" />
-                  <Button mnemonicParsing="false" text="MODIFICAR ACTIVIDAD" />
-                  <Button mnemonicParsing="false" text="ELIMINAR ACTIVIDAD" />
+                  <Button mnemonicParsing="false" onAction="#btnCrearActividad" text="CREAR ACTIVIDAD" />
+                  <Button mnemonicParsing="false" onAction="#btnModificarActividad" text="MODIFICAR ACTIVIDAD" />
+                  <Button mnemonicParsing="false" onAction="#btnEliminarActividad" text="ELIMINAR ACTIVIDAD" />
                </children>
                <VBox.margin>
                   <Insets />

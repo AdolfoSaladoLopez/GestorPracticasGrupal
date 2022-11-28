@@ -12,6 +12,7 @@ public class SessionData {
     private static Empresa empresa;
     private static Actividad actividad;
     private static String plataforma;
+    private static Boolean cambios;
 
     public static Alumno getAlumno() {
         return alumno;
@@ -51,5 +52,13 @@ public class SessionData {
 
     public static void setPlataforma(String plataforma) {
         SessionData.plataforma = plataforma;
+    }
+
+    public static Boolean getCambios() {
+        return cambios;
+    }
+
+    public static void setCambios(Boolean cambios) {
+        SessionData.cambios = cambios;
     }
 }

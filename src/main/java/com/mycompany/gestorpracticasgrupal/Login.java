@@ -51,7 +51,7 @@ public class Login implements Initializable {
                     SessionData.setProfesor(resultado.get(0));
 
                     try {
-                        App.setRoot("prymary");
+                        App.setRoot("ventana-profesor-alumnos");
                     } catch (IOException ex) {
                         Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
                     }

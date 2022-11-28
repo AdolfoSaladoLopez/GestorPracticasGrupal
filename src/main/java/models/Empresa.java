@@ -12,6 +12,7 @@ public class Empresa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
+    private String telefono;
     private String correo;
     private String responsable;
     private String observaciones;
@@ -20,6 +21,14 @@ public class Empresa implements Serializable {
     private List<Alumno> alumnos;
 
     public Empresa() {
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Integer getId() {
@@ -72,12 +81,13 @@ public class Empresa implements Serializable {
 
     @Override
     public String toString() {
-        return "Empresa{"
-                + "id=" + id
-                + ", nombre='" + nombre + '\''
-                + ", correo='" + correo + '\''
-                + ", responsable='" + responsable + '\''
-                + ", observaciones='" + observaciones + '\''
-                + '}';
+        return "Empresa{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correo='" + correo + '\'' +
+                ", responsable='" + responsable + '\'' +
+                ", observaciones='" + observaciones + '\'' +
+                '}';
     }
 }

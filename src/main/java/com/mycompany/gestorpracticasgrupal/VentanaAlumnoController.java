@@ -6,13 +6,9 @@ package com.mycompany.gestorpracticasgrupal;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.*;
 
 import static java.util.Collections.list;
-
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -20,10 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Actividad;
 import models.Alumno;
@@ -35,6 +28,7 @@ import models.Alumno;
  */
 public class VentanaAlumnoController implements Initializable {
     AlumnoDAO gestorAlumno = new AlumnoDAOHib();
+    ActividadDAO gestorActividad = new ActividadDAOHib();
 
     @FXML
     private TableView<Actividad> tFct;
@@ -50,16 +44,6 @@ public class VentanaAlumnoController implements Initializable {
     private TableColumn<Actividad, String> tcObservaciones;
     @FXML
     private Label lblBienvenida;
-    @FXML
-    private TableColumn<?, ?> tcFecha1;
-    @FXML
-    private TableColumn<?, ?> tcTipo1;
-    @FXML
-    private TableColumn<?, ?> tcHoras1;
-    @FXML
-    private TableColumn<?, ?> tcActividad1;
-    @FXML
-    private TableColumn<?, ?> tcObservaciones1;
     @FXML
     private Label lblDnIAlumno;
     @FXML
@@ -86,6 +70,18 @@ public class VentanaAlumnoController implements Initializable {
     private Label lblHorasRealizadasDual;
     @FXML
     private Label lblHorasRealizadasFct;
+    @FXML
+    private TableView<Actividad> tDual;
+    @FXML
+    private TableColumn<Actividad, String> tcFechaDual;
+    @FXML
+    private TableColumn<Actividad, String> tcTipoDual;
+    @FXML
+    private TableColumn<Actividad, Integer> tcHorasDual;
+    @FXML
+    private TableColumn<Actividad, String> tcActividadDual;
+    @FXML
+    private TableColumn<Actividad, String> tcObservacionesDual;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -93,17 +89,7 @@ public class VentanaAlumnoController implements Initializable {
         Integer horasTotalDual = alumno.getTotalDual();
         Integer horasTotalFct = alumno.getTotalFCT();
 
-
-        //tcFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
-        tcTipo.setCellValueFactory(new PropertyValueFactory("tipo"));
-        tcHoras.setCellValueFactory(new PropertyValueFactory("horas"));
-        tcActividad.setCellValueFactory(new PropertyValueFactory("actividad"));
-        tcObservaciones.setCellValueFactory(new PropertyValueFactory("observaciones"));
-
-        tcFecha.setCellValueFactory( (var fila)->{
-            Actividad a = fila.getValue();
-            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
-        });
+        establecerCeldas();
 
         /* ETIQUETAS ALUMNO */
         lblBienvenida.setText("Bienvenid@, " + SessionData.getAlumno().getNombre() + " " + SessionData.getAlumno().getApellidos());
@@ -131,26 +117,57 @@ public class VentanaAlumnoController implements Initializable {
         lblHorasRealizadasFct.setText(String.valueOf(gestorAlumno.calcularHorasFct(alumno).get(0)));
 
         actualizarTabla();
+    }
 
+    private void establecerCeldas() {
+        //tcFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+        tcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        tcHoras.setCellValueFactory(new PropertyValueFactory<>("horas"));
+        tcActividad.setCellValueFactory(new PropertyValueFactory<>("actividad"));
+        tcObservaciones.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+
+        tcFecha.setCellValueFactory((var fila) -> {
+            Actividad a = fila.getValue();
+            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
+        });
+
+        tcFechaDual.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        tcTipoDual.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        tcHorasDual.setCellValueFactory(new PropertyValueFactory<>("horas"));
+        tcActividadDual.setCellValueFactory(new PropertyValueFactory<>("actividad"));
+        tcObservacionesDual.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+
+        tcFechaDual.setCellValueFactory((var fila) -> {
+            Actividad a = fila.getValue();
+            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
+        });
     }
 
     private void actualizarTabla() {
-        List<Actividad> listadoActividades = new ArrayList<>();
-        listadoActividades = gestorAlumno.obtenerAlumnoId(SessionData.getAlumno().getId()).getActividades();
-
+        SessionData.setActividad(null);
+        List<Actividad> listadoActividades = gestorAlumno.obtenerAlumnoId(SessionData.getAlumno().getId()).getActividades();
         List<Actividad> listadoActividadesFct = new ArrayList<>();
+        List<Actividad> listadoActividadesDual = new ArrayList<>();
 
         for (Actividad actividad : listadoActividades) {
             if (actividad.getTipo().equals("FCT")) {
                 listadoActividadesFct.add(actividad);
+            } else if (actividad.getTipo().equals("DUAL")) {
+                listadoActividadesDual.add(actividad);
             }
         }
 
         ObservableList<Actividad> datos = FXCollections.observableArrayList();
         datos.addAll(listadoActividadesFct);
+        ObservableList<Actividad> datosDual = FXCollections.observableArrayList();
+        datosDual.addAll(listadoActividadesDual);
+
 
         tFct.getItems().clear();
         tFct.getItems().addAll(datos);
+
+        tDual.getItems().clear();
+        tDual.getItems().addAll(datosDual);
 
     }
 
@@ -166,6 +183,67 @@ public class VentanaAlumnoController implements Initializable {
     void itemCerrarSesion(ActionEvent event) throws IOException {
         SessionData.setAlumno(null);
         App.setRoot("inicio");
+    }
+
+    @FXML
+    private void btnCrearActividad(ActionEvent event) {
+        try {
+            App.setRoot("crear-actividad-alumno");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void btnModificarActividad(ActionEvent event) {
+        if (tFct.getSelectionModel().getSelectedItem() != null ) {
+            SessionData.setActividad(tFct.getSelectionModel().getSelectedItem());
+
+            try {
+                App.setRoot("modificar-actividad-alumno");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if (tDual.getSelectionModel().getSelectedItem() != null) {
+            SessionData.setActividad(tDual.getSelectionModel().getSelectedItem());
+
+            try {
+                App.setRoot("modificar-actividad-alumno");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    private void btnEliminarActividad(ActionEvent event) {
+        if (tFct.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Eliminación del pedido");
+            alert.setTitle("Confirmación");
+            alert.setContentText("¿Estas seguro de confirmar la acción?");
+            Optional<ButtonType> action = alert.showAndWait();
+            // Si hemos pulsado en aceptar
+            if (action.get() == ButtonType.OK) {
+                gestorActividad.eliminarActividad(tFct.getSelectionModel().getSelectedItem());
+                actualizarTabla();
+                lblHorasRealizadasFct.setText(String.valueOf(gestorAlumno.calcularHorasFct(SessionData.getAlumno()).get(0)));
+            }
+        }
+        if (tDual.getSelectionModel().getSelectedItem() != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Eliminación del pedido");
+            alert.setTitle("Confirmación");
+            alert.setContentText("¿Estas seguro de confirmar la acción?");
+            Optional<ButtonType> action = alert.showAndWait();
+            // Si hemos pulsado en aceptar
+            if (action.get() == ButtonType.OK) {
+                gestorActividad.eliminarActividad(tDual.getSelectionModel().getSelectedItem());
+                actualizarTabla();
+                lblHorasRealizadasDual.setText(String.valueOf(gestorAlumno.calcularHorasDual(SessionData.getAlumno()).get(0)));
+            }
+        }
     }
 
 }

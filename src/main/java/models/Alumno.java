@@ -27,6 +27,7 @@ public class Alumno implements Serializable {
     private Integer totalFCT;
     private String observaciones;
 
+
     @ManyToOne
     @JoinColumn(name = "profesor")
     private Profesor profesor;
