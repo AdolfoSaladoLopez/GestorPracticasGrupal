@@ -83,6 +83,8 @@ public class VentanaAlumnoController implements Initializable {
     @FXML
     private TableColumn<Actividad, String> tcObservacionesDual;
 
+    private AlumnoDAO gestorAlumnos = new AlumnoDAOHib();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Alumno alumno = SessionData.getAlumno();
@@ -106,15 +108,28 @@ public class VentanaAlumnoController implements Initializable {
         lblEmpresaDual.setText(SessionData.getAlumno().getEmpresa().getNombre());
         lblCorreoDual.setText(SessionData.getAlumno().getEmpresa().getCorreo());
         lblResponsableDual.setText(SessionData.getAlumno().getEmpresa().getResponsable());
-        if (horasTotalDual != 0) {
+        /* DATOS HORAS PRÁCTICAS */
+        if (SessionData.getAlumno().getTotalDual() != 0 && SessionData.getAlumno().getTotalFCT() != 0) {
             lblHorasTotalesDual.setText(SessionData.getAlumno().getTotalDual().toString());
-            lblHorasRealizadasDual.setText(String.valueOf(gestorAlumno.calcularHorasDual(alumno).get(0)));
+            lblHorasRealizadasDual.setText(gestorAlumnos.calcularHorasDual(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+            lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
+            lblHorasRealizadasFct.setText(gestorAlumnos.calcularHorasFct(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+        } else if (SessionData.getAlumno().getTotalFCT() != 0 && SessionData.getAlumno().getTotalDual() == 0) {
+            lblHorasTotalesDual.setText("Sin asignar");
+            lblHorasRealizadasDual.setText("Sin asignar");
+            lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
+            lblHorasRealizadasFct.setText(gestorAlumnos.calcularHorasFct(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+        } else if (SessionData.getAlumno().getTotalDual() != 0 && SessionData.getAlumno().getTotalFCT() == 0) {
+            lblHorasTotalesDual.setText(SessionData.getAlumno().getTotalDual().toString());
+            lblHorasRealizadasDual.setText(gestorAlumnos.calcularHorasDual(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+            lblHorasTotalesFct.setText("Sin asignar");
+            lblHorasRealizadasFct.setText("Sin asignar");
         } else {
             lblHorasTotalesDual.setText("Sin asignar");
             lblHorasRealizadasDual.setText("Sin asignar");
+            lblHorasTotalesFct.setText("Sin asignar");
+            lblHorasRealizadasFct.setText("Sin asignar");
         }
-        lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
-        lblHorasRealizadasFct.setText(String.valueOf(gestorAlumno.calcularHorasFct(alumno).get(0)));
 
         actualizarTabla();
     }
@@ -196,7 +211,7 @@ public class VentanaAlumnoController implements Initializable {
 
     @FXML
     private void btnModificarActividad(ActionEvent event) {
-        if (tFct.getSelectionModel().getSelectedItem() != null ) {
+        if (tFct.getSelectionModel().getSelectedItem() != null) {
             SessionData.setActividad(tFct.getSelectionModel().getSelectedItem());
 
             try {

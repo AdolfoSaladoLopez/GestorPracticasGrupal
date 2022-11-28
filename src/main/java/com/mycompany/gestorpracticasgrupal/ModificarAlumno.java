@@ -68,6 +68,8 @@ public class ModificarAlumno implements Initializable {
         tfCorreo.setText(alumno.getCorreo());
         tfObservaciones.setText(alumno.getObservaciones());
         tfTelefono.setText(alumno.getTelefono());
+        tfHorasTotalDual.setText(alumno.getTotalDual().toString());
+        tfHorasTotalFct.setText(alumno.getTotalFCT().toString());
 
         rellenarComboEmpresas();
 
