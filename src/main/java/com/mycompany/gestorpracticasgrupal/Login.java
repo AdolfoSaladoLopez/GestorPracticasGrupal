@@ -38,7 +38,7 @@ public class Login implements Initializable {
     private void aceptar(ActionEvent event) {
         if (SessionData.getPlataforma().equals("Profesor")) {
             try (var s = HibernateUtil.getSessionFactory().openSession()) {
-                Query q = s.createQuery("from Profesor where correo=:param and password=md5(:pwd)");
+                Query q = s.createQuery("from Profesor where correo=:param and password=:pwd");
                 q.setParameter("param", txtUser.getText());
                 q.setParameter("pwd", txtPassword.getText());
 
@@ -63,7 +63,7 @@ public class Login implements Initializable {
             }
         } else if (SessionData.getPlataforma().equals("Alumno")) {
             try (var s = HibernateUtil.getSessionFactory().openSession()) {
-                Query q = s.createQuery("from Alumno where correo=:param and password=md5(:pwd)");
+                Query q = s.createQuery("from Alumno where correo=:param and password=:pwd");
                 q.setParameter("param", txtUser.getText());
                 q.setParameter("pwd", txtPassword.getText());
 
