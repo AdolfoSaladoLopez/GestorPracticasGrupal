@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.ModificarEmpresa">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondoInicio" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.ModificarEmpresa">
     <center>
         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
             <children>
-                <Label text="MODIFICAR UNA EMPRESA">
+                <Label styleClass="tituloInicio" text="MODIFICAR UNA EMPRESA">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -36,11 +36,11 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="TOP_RIGHT" contentDisplay="TOP" maxWidth="1.7976931348623157E308" text="Nombre de la empresa: " textAlignment="RIGHT" />
-                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Responsable: " GridPane.rowIndex="1" />
-                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Correo electrónico: " GridPane.rowIndex="2" />
-                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Número de teléfono: " GridPane.rowIndex="3" />
-                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Observaciones: " GridPane.rowIndex="4" />
+                        <Label alignment="TOP_RIGHT" contentDisplay="TOP" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" text="Nombre de la empresa: " textAlignment="RIGHT" />
+                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" text="Responsable: " GridPane.rowIndex="1" />
+                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" text="Correo electrónico: " GridPane.rowIndex="2" />
+                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" text="Número de teléfono: " GridPane.rowIndex="3" />
+                        <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" text="Observaciones: " GridPane.rowIndex="4" />
                         <TextField fx:id="tfNombreEmpresa" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <TextField fx:id="tfResponsable" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="tfCorreo" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -50,8 +50,8 @@
                 </GridPane>
                 <HBox alignment="CENTER" spacing="20.0">
                     <children>
-                        <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#btnVolver" prefWidth="80.0" text="Volver" />
-                        <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#btnCrear" prefWidth="80.0" text="Modificar" />
+                        <Button id="salir" maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#btnVolver" prefWidth="80.0" styleClass="btn" text="Volver" />
+                        <Button maxWidth="80.0" minWidth="80.0" mnemonicParsing="false" onAction="#btnCrear" prefWidth="80.0" styleClass="btn" text="Modificar" />
                     </children>
                     <VBox.margin>
                         <Insets />

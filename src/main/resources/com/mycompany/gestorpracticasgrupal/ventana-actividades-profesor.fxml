@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaActividadesProfesor">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="fondoInicio" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaActividadesProfesor">
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="ACTIVIDADES DUAL" />
+                <Label styleClass="tituloInicio" text="ACTIVIDADES DUAL" />
                 <TableView fx:id="tDual" maxHeight="300.0" maxWidth="1050.0" minHeight="300.0" minWidth="1050.0" prefHeight="300.0" prefWidth="1050.0">
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -30,7 +30,7 @@
                         <TableColumn fx:id="tcObservacionesDual" maxWidth="600.0" minWidth="600.0" prefWidth="600.0" resizable="false" text="OBSERVACIONES" />
                     </columns>
                 </TableView>
-                <Label alignment="CENTER" contentDisplay="CENTER" text="ACTIVIDADES FCT">
+                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="tituloInicio" text="ACTIVIDADES FCT">
                     <VBox.margin>
                         <Insets top="20.0" />
                     </VBox.margin>
@@ -49,7 +49,7 @@
                 </TableView>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnVolver" prefWidth="150.0" text="Volver" />
+                        <Button id="salir" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnVolver" prefWidth="150.0" styleClass="btn" text="Volver" />
                     </children>
                     <VBox.margin>
                         <Insets />
@@ -78,7 +78,7 @@
                         </Menu>
                     </menus>
                 </MenuBar>
-                <Label fx:id="lblBienvenida" alignment="TOP_LEFT" text="label">
+                <Label fx:id="lblBienvenida" alignment="TOP_LEFT" styleClass="etiquetaPresentacion" stylesheets="@../../../styles/estilos.css" text="label">
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
@@ -94,29 +94,29 @@
             <children>
                 <VBox>
                     <children>
-                        <Label text="DATOS DEL ALUMNO:" />
+                        <Label styleClass="titulosDatos" stylesheets="@../../../styles/estilos.css" text="DATOS DEL ALUMNO:" />
                         <HBox spacing="2.0">
                             <children>
-                                <Label text="DNI: " />
-                                <Label fx:id="lblDnIAlumno" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="DNI: " />
+                                <Label fx:id="lblDnIAlumno" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox spacing="2.0">
                             <children>
-                                <Label text="Fecha de nacimiento: " />
-                                <Label fx:id="lblNacimientoAlumno" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Fecha de nacimiento: " />
+                                <Label fx:id="lblNacimientoAlumno" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox spacing="2.0">
                             <children>
-                                <Label text="Correo electrónico: " />
-                                <Label fx:id="lblCorreoAlumno" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Correo electrónico: " />
+                                <Label fx:id="lblCorreoAlumno" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox spacing="2.0">
                             <children>
-                                <Label text="Número de teléfono: " />
-                                <Label fx:id="lblNumeroAlumno" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Número de teléfono: " />
+                                <Label fx:id="lblNumeroAlumno" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                     </children>
@@ -124,47 +124,47 @@
                 <Separator prefWidth="200.0" />
                 <VBox>
                     <children>
-                        <Label prefHeight="18.0" prefWidth="169.0" text="DATOS EMPRESA DUAL Y FCT:" />
+                        <Label prefHeight="18.0" prefWidth="169.0" styleClass="titulosDatos" stylesheets="@../../../styles/estilos.css" text="DATOS EMPRESA:" />
                         <HBox fillHeight="false">
                             <children>
-                                <Label text="Nombre: " />
-                                <Label fx:id="lblEmpresaDual" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Nombre: " />
+                                <Label fx:id="lblEmpresaDual" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Correo electrónico: " />
-                                <Label fx:id="lblCorreoDual" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Correo electrónico: " />
+                                <Label fx:id="lblCorreoDual" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Responsable: " />
-                                <Label fx:id="lblResponsableDual" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Responsable: " />
+                                <Label fx:id="lblResponsableDual" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Horas totales DUAL: " />
-                                <Label fx:id="lblHorasTotalesDual" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Horas totales DUAL: " />
+                                <Label fx:id="lblHorasTotalesDual" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Horas realizadas DUAL: " />
-                                <Label fx:id="lblHorasRealizadasDual" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Horas realizadas DUAL: " />
+                                <Label fx:id="lblHorasRealizadasDual" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Horas totales FCT: " />
-                                <Label fx:id="lblHorasTotalesFct" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Horas totales FCT: " />
+                                <Label fx:id="lblHorasTotalesFct" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                         <HBox>
                             <children>
-                                <Label text="Horas realizadas FCT: " />
-                                <Label fx:id="lblHorasRealizadasFct" text="Label" />
+                                <Label styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Horas realizadas FCT: " />
+                                <Label fx:id="lblHorasRealizadasFct" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                             </children>
                         </HBox>
                     </children>

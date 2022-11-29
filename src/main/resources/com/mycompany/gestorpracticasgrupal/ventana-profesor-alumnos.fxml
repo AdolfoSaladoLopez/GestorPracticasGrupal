@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaProfesorAlumnos">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="fondoInicio" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaProfesorAlumnos">
    <center>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="INFORMACIÓN DE ALUMNOS ASIGNADOS">
+            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="tituloInicio" text="INFORMACIÓN DE ALUMNOS ASIGNADOS">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -27,10 +26,10 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="350.0" prefWidth="500.0">
                      <children>
-                        <TableView fx:id="tableAlumnos" maxHeight="350.0" maxWidth="500.0" minHeight="350.0" minWidth="500.0" onMouseClicked="#alumnoSeleccionado" prefHeight="350.0" prefWidth="500.0">
+                        <TableView fx:id="tableAlumnos" maxHeight="333.0" maxWidth="500.0" minHeight="333.0" minWidth="471.0" onMouseClicked="#alumnoSeleccionado" prefHeight="333.0" prefWidth="471.0">
                           <columns>
                             <TableColumn fx:id="tcNombre" prefWidth="75.0" text="NOMBRE" />
-                            <TableColumn fx:id="tcApellidos" prefWidth="75.0" text="APELLIDOS" />
+                            <TableColumn fx:id="tcApellidos" prefWidth="226.4000244140625" text="APELLIDOS" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -45,32 +44,32 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <Label text="Nombre del alumno/a: " />
-                                    <Label fx:id="lblNombreAlumno" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Nombre del alumno/a: " />
+                                    <Label fx:id="lblNombreAlumno" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="DNI: " />
-                                    <Label fx:id="lblDniAlumno" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="DNI: " />
+                                    <Label fx:id="lblDniAlumno" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Fecha de nacimiento: " />
-                                    <Label fx:id="lblNacimientoAlumno" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Fecha de nacimiento: " />
+                                    <Label fx:id="lblNacimientoAlumno" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Correo electrónico: " />
-                                    <Label fx:id="lblCorreoAlumno" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Correo electrónico: " />
+                                    <Label fx:id="lblCorreoAlumno" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Teléfono: " />
-                                    <Label fx:id="lblTelefonoAlumno" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Teléfono: " />
+                                    <Label fx:id="lblTelefonoAlumno" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                            </children>
@@ -86,26 +85,26 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <Label text="Nombre de la empresa asignada: " />
-                                    <Label fx:id="lblNombreEmpresa" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Nombre de la empresa asignada: " />
+                                    <Label fx:id="lblNombreEmpresa" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Responsable de la empresa: " />
-                                    <Label fx:id="lblNombreResponsableEmpresa" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Responsable de la empresa: " />
+                                    <Label fx:id="lblNombreResponsableEmpresa" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Correo de contacto: " />
-                                    <Label fx:id="lblCorreoEmpresa" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Correo de contacto: " />
+                                    <Label fx:id="lblCorreoEmpresa" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Teléfono de contacto: " />
-                                    <Label fx:id="lblTelefonoEmpresa" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Teléfono de contacto: " />
+                                    <Label fx:id="lblTelefonoEmpresa" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                            </children>
@@ -118,14 +117,14 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <Label text="Horas total de DUAL: " />
-                                    <Label fx:id="lblHorasTotalDual" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Horas total de DUAL: " />
+                                    <Label fx:id="lblHorasTotalDual" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Horas realizadas DUAL: " />
-                                    <Label fx:id="lblHorasRealizadasDual" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Horas realizadas DUAL: " />
+                                    <Label fx:id="lblHorasRealizadasDual" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                            </children>
@@ -138,14 +137,14 @@
                            <children>
                               <HBox>
                                  <children>
-                                    <Label text="Horas total de FCT: " />
-                                    <Label fx:id="lblHorasTotalFct" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Horas total de FCT: " />
+                                    <Label fx:id="lblHorasTotalFct" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
-                                    <Label text="Horas realizadas de FCT: " />
-                                    <Label fx:id="lblHorasRealizadasFct" text="Sin selección" />
+                                    <Label styleClass="etiquetasDatos" text="Horas realizadas de FCT: " />
+                                    <Label fx:id="lblHorasRealizadasFct" styleClass="respuestasDatos" text="Sin selección" />
                                  </children>
                               </HBox>
                            </children>
@@ -166,15 +165,18 @@
             </HBox>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnAddAlumno" prefWidth="150.0" text="AÑADIR ALUMNO" />
-                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnModificarAlumno" prefWidth="150.0" text="MODIFICAR ALUMNO" />
-                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnEliminarAlumno" prefWidth="150.0" text="ELIMINAR ALUMNO" />
+                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnAddAlumno" prefWidth="150.0" styleClass="btn" text="AÑADIR ALUMNO" />
+                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnModificarAlumno" prefWidth="150.0" styleClass="btn" text="MODIFICAR ALUMNO" />
+                  <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#btnEliminarAlumno" prefWidth="150.0" styleClass="btn" text="ELIMINAR ALUMNO" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
             </HBox>
-            <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#btnListadoActividades" prefWidth="200.0" text="VER LISTADO ACTIVIDADES" />
+            <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#btnListadoActividades" prefWidth="200.0" styleClass="btn" text="VER LISTADO ACTIVIDADES" />
          </children>
       </VBox>
    </center>

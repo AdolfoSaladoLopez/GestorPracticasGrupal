@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaEmpresas">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="fondoInicio" stylesheets="@../../../styles/estilos.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.gestorpracticasgrupal.VentanaEmpresas">
     <center>
         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
             <children>
-                <Label text="MENÚ DE GESTIÓN DE EMPRESAS">
+                <Label styleClass="tituloInicio" text="MENÚ DE GESTIÓN DE EMPRESAS">
                     <VBox.margin>
                         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                     </VBox.margin>
@@ -25,36 +25,36 @@
                     <children>
                         <VBox alignment="CENTER_LEFT" maxWidth="300.0" minWidth="300.0" prefWidth="300.0">
                             <children>
-                                <Label text="INFORMACIÓN DE LA EMPRESA" />
+                                <Label styleClass="titulosDatos" stylesheets="@../../../styles/estilos.css" text="INFORMACIÓN DE LA EMPRESA" />
                                 <HBox>
                                     <children>
-                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nombre de la empresa: " />
-                                        <Label fx:id="lblNombreEmpresa" text="Label" />
+                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Nombre de la empresa: " />
+                                        <Label fx:id="lblNombreEmpresa" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                                     </children>
                                 </HBox>
                                 <HBox>
                                     <children>
-                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Responsable: " />
-                                        <Label fx:id="lblResponsable" text="Label" />
+                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Responsable: " />
+                                        <Label fx:id="lblResponsable" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                                     </children>
                                 </HBox>
                                 <HBox>
                                     <children>
-                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Correo electrónico: " />
-                                        <Label fx:id="lblCorreo" text="Label" />
+                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Correo electrónico: " />
+                                        <Label fx:id="lblCorreo" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                                     </children>
                                 </HBox>
                                 <HBox>
                                     <children>
-                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Teléfono: " />
-                                        <Label fx:id="lblTelefono" text="Label" />
+                                        <Label alignment="TOP_LEFT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="etiquetasDatos" stylesheets="@../../../styles/estilos.css" text="Teléfono: " />
+                                        <Label fx:id="lblTelefono" styleClass="respuestasDatos" stylesheets="@../../../styles/estilos.css" text="Label" />
                                     </children>
                                 </HBox>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER">
                             <children>
-                                <Label text="EMPRESAS" />
+                                <Label styleClass="tituloInicio" stylesheets="@../../../styles/estilos.css" text="EMPRESAS" />
                                 <TableView fx:id="tablaEmpresas" maxHeight="300.0" maxWidth="200.0" minHeight="300.0" minWidth="200.0" onMouseClicked="#empresaSeleccionada" prefHeight="300.0" prefWidth="200.0">
                                     <columns>
                                         <TableColumn fx:id="tcNombreEmpresa" prefWidth="75.0" text="NOMBRE DE LA EMPRESA" />
@@ -67,7 +67,7 @@
                         </VBox>
                         <VBox alignment="CENTER">
                             <children>
-                                <Label text="ALUMNOS ASIGNADOS A DICHA EMPRESA" />
+                                <Label styleClass="tituloInicio" stylesheets="@../../../styles/estilos.css" text="ALUMNOS ASIGNADOS A LA EMPRESA" />
                                 <TableView fx:id="tablaAlumnosAsociados" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0">
                                     <columns>
                                         <TableColumn fx:id="tcNombreAlumno" prefWidth="75.0" text="NOMBRE" />
@@ -84,9 +84,9 @@
                 </HBox>
                 <HBox alignment="CENTER" spacing="20.0">
                     <children>
-                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnAñadir" prefWidth="135.0" text="AÑADIR EMPRESA" />
-                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnModificar" prefWidth="135.0" text="MODIFICAR EMPRESA" />
-                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnEliminar" prefWidth="135.0" text="ELIMINAR EMPRESA" />
+                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnAñadir" prefWidth="135.0" styleClass="btn" text="AÑADIR EMPRESA" />
+                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnModificar" prefWidth="135.0" styleClass="btn" text="MODIFICAR EMPRESA" />
+                        <Button maxWidth="135.0" minWidth="135.0" mnemonicParsing="false" onAction="#btnEliminar" prefWidth="135.0" styleClass="btn" text="ELIMINAR EMPRESA" />
                     </children>
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -96,7 +96,7 @@
         </VBox>
     </center>
     <top>
-        <MenuBar BorderPane.alignment="CENTER">
+        <MenuBar prefHeight="0.0" prefWidth="1126.0" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="Ir a">
                     <items>
