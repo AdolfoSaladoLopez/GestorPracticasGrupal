@@ -183,7 +183,6 @@ public class VentanaAlumnoController implements Initializable {
 
         tDual.getItems().clear();
         tDual.getItems().addAll(datosDual);
-
     }
 
     @FXML
@@ -260,5 +259,4 @@ public class VentanaAlumnoController implements Initializable {
             }
         }
     }
-
 }

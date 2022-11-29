@@ -75,7 +75,6 @@ public class ModificarAlumno implements Initializable {
 
 
         lblBienvenida.setText("Bienvenid@, " + profesorSesion.getNombre() + " " + profesorSesion.getApellidos());
-
     }
 
     @FXML
@@ -114,7 +113,6 @@ public class ModificarAlumno implements Initializable {
         }
     }
 
-
     private Date obtenerFecha() {
         LocalDate fecha = dpNacimiento.getValue();
         String fechaString = fecha.getYear() + "/" + fecha.getMonthValue() + "/" + fecha.getDayOfMonth();
@@ -136,5 +134,4 @@ public class ModificarAlumno implements Initializable {
         cbEmpresa.setConverter(new EmpresaConverter());
         cbEmpresa.getSelectionModel().select(alumno.getEmpresa());
     }
-
 }

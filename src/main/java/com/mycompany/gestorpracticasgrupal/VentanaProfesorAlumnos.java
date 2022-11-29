@@ -218,6 +218,4 @@ public class VentanaProfesorAlumnos implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-
 }

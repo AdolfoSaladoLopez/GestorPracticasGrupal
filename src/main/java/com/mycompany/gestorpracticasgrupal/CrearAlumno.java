@@ -18,6 +18,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
+
 import models.Empresa;
 
 public class CrearAlumno implements Initializable {
@@ -64,7 +65,7 @@ public class CrearAlumno implements Initializable {
 
 
     private void rellenarDatePicker() {
-        dpNacimiento.setValue( LocalDate.now() );
+        dpNacimiento.setValue(LocalDate.now());
     }
 
     private Date obtenerFecha() {
@@ -87,8 +88,6 @@ public class CrearAlumno implements Initializable {
         cbEmpresa.setItems(empresas);
         cbEmpresa.setConverter(new EmpresaConverter());
         cbEmpresa.getSelectionModel().selectFirst();
-
-
     }
 
     @FXML
@@ -129,6 +128,4 @@ public class CrearAlumno implements Initializable {
             }
         }
     }
-
-
 }
