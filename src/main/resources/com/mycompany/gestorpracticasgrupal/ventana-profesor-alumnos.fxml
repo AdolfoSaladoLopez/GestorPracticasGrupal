@@ -183,7 +183,7 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Archivo">
+          <Menu mnemonicParsing="false" text="Ir a">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#btnGestionarEmpresas" text="Gestionar empresas" />
                   <MenuItem mnemonicParsing="false" onAction="#btnCerrarSesion" text="Cerrar sesión" />
