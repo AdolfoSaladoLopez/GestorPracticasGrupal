@@ -41,6 +41,7 @@ public class VentanaEmpresas implements Initializable {
     private TableColumn<Empresa, String> tcCorreoAlumno;
 
     EmpresaDAO gestorEmpresas = new EmpresaDAOHib();
+    AlumnoDAO gestorAlumnos = new AlumnoDAOHib();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -148,6 +149,11 @@ public class VentanaEmpresas implements Initializable {
             Optional<ButtonType> action = alert.showAndWait();
             // Si hemos pulsado en aceptar
             if (action.get() == ButtonType.OK) {
+                var array = tablaEmpresas.getSelectionModel().getSelectedItem().getAlumnos();
+                for (Alumno a : array) {
+                    a.setEmpresa(gestorEmpresas.obtenerEmpresaId(4));
+                    gestorAlumnos.modificarAlumno(a);
+                }
                 gestorEmpresas.eliminarEmpresa(tablaEmpresas.getSelectionModel().getSelectedItem());
                 establecerEtiquetasSinAsignacion();
 

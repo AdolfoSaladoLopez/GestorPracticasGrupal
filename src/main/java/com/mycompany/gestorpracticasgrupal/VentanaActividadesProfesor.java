@@ -1,5 +1,6 @@
 package com.mycompany.gestorpracticasgrupal;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import models.Actividad;
 import models.Alumno;
 
@@ -72,7 +74,6 @@ public class VentanaActividadesProfesor implements Initializable {
     Alumno alumno = SessionData.getAlumno();
     AlumnoDAO gestorAlumno = new AlumnoDAOHib();
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Integer horasTotalDual = alumno.getTotalDual();
@@ -81,33 +82,50 @@ public class VentanaActividadesProfesor implements Initializable {
         /* ETIQUETAS ALUMNO */
         lblBienvenida.setText("Bienvenid@, " + SessionData.getProfesor().getNombre() +
                 ". Estos son las actividades de " + SessionData.getAlumno().getNombre() + " " + SessionData.getAlumno().getApellidos());
-        lblDnIAlumno.setText(SessionData.getAlumno().getDni());
-        lblNacimientoAlumno.setText(SessionData.getAlumno().getNacimiento().toString().split(" ")[0]);
-        lblCorreoAlumno.setText(SessionData.getAlumno().getCorreo());
-        lblNumeroAlumno.setText(SessionData.getAlumno().getTelefono());
-
-
+        lblDnIAlumno.setText(alumno.getDni());
+        lblNacimientoAlumno.setText(alumno.getNacimiento().toString().split(" ")[0]);
+        lblCorreoAlumno.setText(alumno.getCorreo());
+        lblNumeroAlumno.setText(alumno.getTelefono());
 
         /* ETIQUETAS EMPRESA DUAL */
-        lblEmpresaDual.setText(SessionData.getAlumno().getEmpresa().getNombre());
-        lblCorreoDual.setText(SessionData.getAlumno().getEmpresa().getCorreo());
-        lblResponsableDual.setText(SessionData.getAlumno().getEmpresa().getResponsable());
-        if (horasTotalDual != 0) {
+        lblEmpresaDual.setText(alumno.getEmpresa().getNombre());
+        lblCorreoDual.setText(alumno.getEmpresa().getCorreo());
+        lblResponsableDual.setText(alumno.getEmpresa().getResponsable());
+        /* DATOS HORAS PRÁCTICAS */
+        if (alumno.getTotalDual() != 0 && alumno.getTotalFCT() != 0) {
             lblHorasTotalesDual.setText(SessionData.getAlumno().getTotalDual().toString());
-            lblHorasRealizadasDual.setText(String.valueOf(gestorAlumno.calcularHorasDual(alumno).get(0)));
+            lblHorasRealizadasDual.setText(gestorAlumno.calcularHorasDual(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+            lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
+            lblHorasRealizadasFct.setText(gestorAlumno.calcularHorasFct(SessionData.getAlumno()).toString().replace("[", "").replace("]", ""));
+        } else if (alumno.getTotalFCT() != 0 && alumno.getTotalDual() == 0) {
+            lblHorasTotalesDual.setText("Sin asignar");
+            lblHorasRealizadasDual.setText("Sin asignar");
+            lblHorasTotalesFct.setText(alumno.getTotalFCT().toString());
+            lblHorasRealizadasFct.setText(gestorAlumno.calcularHorasFct(alumno).toString().replace("[", "").replace("]", ""));
+        } else if (alumno.getTotalDual() != 0 && alumno.getTotalFCT() == 0) {
+            lblHorasTotalesDual.setText(alumno.getTotalDual().toString());
+            lblHorasRealizadasDual.setText(gestorAlumno.calcularHorasDual(alumno).toString().replace("[", "").replace("]", ""));
+            lblHorasTotalesFct.setText("Sin asignar");
+            lblHorasRealizadasFct.setText("Sin asignar");
+        } else if (gestorAlumno.calcularHorasFct(alumno) == null) {
+            lblHorasRealizadasFct.setText("Sin asignar");
+        } else if (gestorAlumno.calcularHorasDual(alumno) == null) {
+            lblHorasRealizadasFct.setText("Sin asignar");
         } else {
             lblHorasTotalesDual.setText("Sin asignar");
             lblHorasRealizadasDual.setText("Sin asignar");
+            lblHorasTotalesFct.setText("Sin asignar");
+            lblHorasRealizadasFct.setText("Sin asignar");
         }
-        lblHorasTotalesFct.setText(SessionData.getAlumno().getTotalFCT().toString());
-        lblHorasRealizadasFct.setText(String.valueOf(gestorAlumno.calcularHorasFct(alumno).get(0)));
 
+        establecerCeldas();
         actualizarTabla();
     }
 
     private void actualizarTabla() {
         SessionData.setActividad(null);
-        List<Actividad> listadoActividades = gestorAlumno.obtenerAlumnoId(SessionData.getAlumno().getId()).getActividades();
+        List<Actividad> listadoActividades = alumno.getActividades();
+        System.out.println(listadoActividades);
         List<Actividad> listadoActividadesFct = new ArrayList<>();
         List<Actividad> listadoActividadesDual = new ArrayList<>();
 
@@ -159,5 +177,28 @@ public class VentanaActividadesProfesor implements Initializable {
         }
     }
 
+    private void establecerCeldas() {
+        //tcFecha.setCellValueFactory(new PropertyValueFactory("fecha"));
+        tcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        tcHoras.setCellValueFactory(new PropertyValueFactory<>("horas"));
+        tcActividad.setCellValueFactory(new PropertyValueFactory<>("actividad"));
+        tcObservaciones.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+
+        tcFecha.setCellValueFactory((var fila) -> {
+            Actividad a = fila.getValue();
+            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
+        });
+
+        tcFechaDual.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        tcTipoDual.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        tcHorasDual.setCellValueFactory(new PropertyValueFactory<>("horas"));
+        tcActividadDual.setCellValueFactory(new PropertyValueFactory<>("actividad"));
+        tcObservacionesDual.setCellValueFactory(new PropertyValueFactory<>("observaciones"));
+
+        tcFechaDual.setCellValueFactory((var fila) -> {
+            Actividad a = fila.getValue();
+            return new SimpleStringProperty(a.getFecha().toString().split(" ")[0]);
+        });
+    }
 
 }
