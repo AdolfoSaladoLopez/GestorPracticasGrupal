@@ -30,11 +30,14 @@ public class Inicio implements Initializable {
     @FXML
     private Button btnSalir;
 
+
     @FXML
     private Label ttulo;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ttulo.setStyle("-fx-stroke-width: 5;-fx-stroke: green;");
+
+
+
         FileInputStream fis = null;
         try {
             fis = new FileInputStream("src/main/resources/img/school.png");

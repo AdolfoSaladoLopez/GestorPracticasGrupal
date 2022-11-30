@@ -1,6 +1,15 @@
 package com.mycompany.gestorpracticasgrupal;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import models.Alumno;
+import models.Profesor;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,17 +17,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import models.Alumno;
-import models.Profesor;
-import org.hibernate.query.Query;
 
 public class Login implements Initializable {
 
@@ -29,13 +27,27 @@ public class Login implements Initializable {
     @FXML
     private PasswordField txtPassword;
 
+    @FXML
+    private Label plataforma;
+
+    @FXML
+    private Button btnVolver;
+    @FXML
+    private Button btnAceptar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        if (SessionData.getPlataforma().equals("Profesor")) {
+            plataforma.setText("PLATAFORMA DE PROFESOR");
+        } else if (SessionData.getPlataforma().equals("Alumno")) {
+            plataforma.setText("PLATAFORMA DE ALUMNO");
+        }
     }
 
     @FXML
     private void aceptar(ActionEvent event) {
+
+
         if (SessionData.getPlataforma().equals("Profesor")) {
             try (var s = HibernateUtil.getSessionFactory().openSession()) {
                 Query q = s.createQuery("from Profesor where correo=:param and password=:pwd");

@@ -20,6 +20,7 @@
             <Glow level="0.0" />
          </effect>
          <children>
+            <Label fx:id="plataforma" styleClass="plataforma" stylesheets="@../../../styles/estilos.css" text="Label" />
             <Label styleClass="tituloInicio" stylesheets="@../../../styles/estilos.css" text="INICIAR SESIÓN" />
             <GridPane hgap="10.0" maxWidth="390.0" prefHeight="82.0" prefWidth="390.0" vgap="10.0">
                <columnConstraints>
