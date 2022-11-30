@@ -12,7 +12,7 @@
 .tituloInicio {
     -fx-font-size: 20px;
     -fx-font-family: 'JetBrains Mono', monospace;
-    -fx-text-fill: black;
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bolder;
     -fx-font-smoothing-type: black;
 }
