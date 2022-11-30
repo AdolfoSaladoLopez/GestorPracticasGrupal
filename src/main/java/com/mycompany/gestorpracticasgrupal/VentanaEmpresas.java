@@ -141,6 +141,7 @@ public class VentanaEmpresas implements Initializable {
 
     @FXML
     private void btnEliminar(ActionEvent event) {
+        var listadoAlumnos = new ArrayList<Alumno>();
         if (tablaEmpresas.getSelectionModel().getSelectedItem() != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Eliminación del alumno");
@@ -152,8 +153,14 @@ public class VentanaEmpresas implements Initializable {
                 var array = tablaEmpresas.getSelectionModel().getSelectedItem().getAlumnos();
                 for (Alumno a : array) {
                     a.setEmpresa(gestorEmpresas.obtenerEmpresaId(4));
+                    listadoAlumnos.add(a);
                     gestorAlumnos.modificarAlumno(a);
                 }
+
+                listadoAlumnos.get(0).getEmpresa().setAlumnos(listadoAlumnos);
+                System.out.println(listadoAlumnos.get(0).getEmpresa());
+                gestorEmpresas.modificarEmpresa(listadoAlumnos.get(0).getEmpresa());
+
                 gestorEmpresas.eliminarEmpresa(tablaEmpresas.getSelectionModel().getSelectedItem());
                 establecerEtiquetasSinAsignacion();
 

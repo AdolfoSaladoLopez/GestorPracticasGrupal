@@ -17,7 +17,7 @@ public class Empresa implements Serializable {
     private String responsable;
     private String observaciones;
 
-    @OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa", fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     private List<Alumno> alumnos;
 
     public Empresa() {
